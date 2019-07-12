@@ -8,6 +8,7 @@
     </div>
     <div v-else-if="headerType=='/myInfo'" class="container">
         <span class="font">个人中心</span>
+        <span class="setting" @touchend="toInfo"></span>
     </div>
 </template>
 
@@ -49,6 +50,9 @@ export default {
             if(phone.indexOf("iPhone")!=-1||phone.indexOf("iPad")!=-1){
                 console.log('iphone')
             }
+        },
+        toInfo(){
+            this.$router.push('/setinfo/infomenu');
         }
     }
 }
@@ -106,6 +110,17 @@ export default {
             width: 100%;
             text-align: center;
             line-height: 2rem;
+        }
+        .setting{
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: url('../assets/setting.png') no-repeat;
+            background-size: 100%;
+            position: absolute;
+            top: 50%;
+            margin-top: -0.75rem;
+            right: 0;
         }
     }
 </style>

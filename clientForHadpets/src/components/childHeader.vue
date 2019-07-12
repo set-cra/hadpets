@@ -1,5 +1,5 @@
 <template>
-    <header class="container">
+    <header class="child-header-container">
         <span class="back" @touchend="back">&lt;</span>
         <span class="title">{{title}}</span>
     </header>
@@ -12,7 +12,12 @@ export default {
             
         }
     },
-    props:["title"],
+    props:{
+        title:{
+            type:String,
+            default:''
+        }
+    },
     methods:{
         back(){
             if(this.userid===undefined){
@@ -33,7 +38,7 @@ export default {
 <style lang="scss" scoped>
     $header-background:#f20000;
     $word-color:#fff;
-    .container{
+    .child-header-container{
         width: 100%;
         height: 2rem;
         background-color:$header-background;

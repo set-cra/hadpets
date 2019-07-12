@@ -11,6 +11,10 @@ export default new Router({
       component: ()=>import("./views/index")
     },
     {
+      path:'/index',
+      redirect:'/'
+    },
+    {
       path: '/myInfo',
       name: 'myInfo',
       component: ()=>import("./views/myInfo")
@@ -31,6 +35,28 @@ export default new Router({
           component:()=>import("./components/login")
         }
       ]
+    },
+    {
+      path:'/setinfo',
+      name:'setinfo',
+      component:()=>import('./views/setinfo'),
+      children:[
+        {
+          path:'infomenu',
+          name:"infomenu",
+          component:()=>import('./components/infomenu')
+        },
+        {
+          path:'myinfo',
+          name:"myinfo",
+          component:()=>import('./components/myinfo')
+        }
+      ]
+    },
+    {
+      path:'*',
+      name:'404',
+      redirect:'/'
     }
   ]
 })

@@ -4,7 +4,7 @@ const express = require('express')();
 const bp = require('body-parser');
 
 express.listen(8153);
-express.use(bp({
+express.use(bp.urlencoded({
     extended:false
 }))
 //引入sors模块

@@ -84,8 +84,8 @@ export default {
     },
     beforeRouteEnter(to, from, next){
         next(vm=>{
-            if(vm.userid===undefined){
-                vm.$router.push('/log/in')
+            if(vm.userid==null){
+                vm.$router.replace('/log/in')
             }
         })
     }

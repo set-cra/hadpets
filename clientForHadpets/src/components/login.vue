@@ -1,23 +1,29 @@
 <template>
     <section class="section">
-        <input  class="item" ref="uname" type="text" placeholder="请输入您的用户名">
-        <input  class="item" type="password" placeholder="请输入您的密码">
+        <input  class="item"  ref="uname" v-model="unameValue" type="text" placeholder="请输入您的用户名">
+        <input  class="item" type="password" v-model="upwdValue" placeholder="请输入您的密码">
         <div class="nav">
             <label>
                 <span class="help">忘记密码?</span>
                 <span class="help gt" @touchend.prevent="tologup">还没有账号?点击前往注册</span>
             </label>
-            <button class="btn" @touchend="login">登录</button>
+            <button class="btn" @touchend="login">{{btnText}}</button>
         </div>
+        <my-warning v-if="context!=''" :context="context"></my-warning>
     </section>
 </template>
 
 <script>
 import { nextTick } from 'q';
+import { setInterval, setTimeout } from 'timers';
+import qs from 'qs';
 export default {
     data() {
         return {
-            
+            unameValue:'',
+            upwdValue:'',
+            context:'',
+            btnText:"登录"
         }
     },
     methods:{
@@ -25,7 +31,45 @@ export default {
             this.$router.replace('/log/up')
         },
         login(){
-
+            let {unameValue:uname,upwdValue:upwd} = this;
+            if(uname.length==0||upwd.length==0){
+                this.context="用户名或密码不能为空";
+                let timer = setTimeout(()=>{
+                    this.context='';
+                    clearTimeout(timer);
+                },500);
+            }else{
+                this.btnText="登录中";
+                this.$axios.post('/user/login',qs.stringify({
+                    uname,upwd
+                })).then(res=>{
+                    let {code} =res.data;
+                    if(code==1){
+                        let {uid} = res.data.data;
+                        this.$store.commit("login",uid);
+                        this.context="登录成功"
+                        let timer=setTimeout(()=>{
+                            this.context="";
+                            clearTimeout(timer);
+                            this.$router.push("/myInfo");
+                        },500)
+                    }else{
+                        this.context="用户名或密码错误";
+                        let timer=setTimeout(()=>{
+                            this.context="";
+                            clearTimeout(timer);
+                        },500)
+                    }
+                    this.btnText="登录";
+                }).catch(err=>{
+                        this.context="登录错误,请稍后尝试";
+                        let timer=setTimeout(()=>{
+                            this.context="";
+                            clearTimeout(timer);
+                        },500)
+                    this.btnText="登录";
+                });
+            }
         }
     },
     mounted(){
@@ -34,6 +78,9 @@ export default {
                 this.$refs.uname.focus();
             }
         )
+    },
+    components:{
+        "my-warning":()=>import('./warning')
     }
 }
 </script>
