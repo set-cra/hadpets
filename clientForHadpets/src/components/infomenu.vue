@@ -31,8 +31,12 @@ export default {
         },
         close(res){
             if(res==1){
-                this.$store.commit("logout");
-                this.$router.push('/index');
+                this.$axios.post('/user/logout').then(res=>{
+                    this.$store.commit("logout");
+                    this.$router.push('/index');
+                }).catch(err=>{
+                    console.log(err);
+                })
             }
                 this.popup=false;
         }

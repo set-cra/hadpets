@@ -121,7 +121,6 @@ export default {
                         this.$axios.post('/user/logcheck',qs.stringify({
                             str,value
                         })).then(res=>{
-                            console.log(res);
                             if(res.data.code==1){
                                 this.unameWarning='用户名可用';
                                 this[str]=value;

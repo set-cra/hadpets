@@ -12,7 +12,19 @@ const cors = require('cors');
 //跨域资源共享
 express.use(cors({
     credentials:true,
-    origin:["http://176.18.8.111:8080"]
+    origin:["http://localhost:8080"]
+}))
+
+//调用session模块保存用户登录
+const session = require('express-session');
+//使用session存储用户信息
+express.use(session({
+    resave:true,
+    saveUninitialized:false,
+    secret:'hadpets',
+    cookie:{
+        maxAge:null
+    }
 }))
 
 //调用用户模块

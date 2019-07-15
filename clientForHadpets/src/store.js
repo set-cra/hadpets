@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     pageindex:0,
-    userid:localStorage.getItem('id'),
+    userid:'',
     userinfo:{}
   },
   mutations: {
@@ -21,12 +21,10 @@ export default new Vuex.Store({
       state.pageindex=num;
     },
     login(state,id){
-      localStorage.setItem('id',id);
-      state.userid=localStorage.getItem('id');
+      state.userid=id;
     },
     logout(state){
-      localStorage.clear();
-      state.userid=localStorage.getItem('id');
+      state.userid=undefined;
     },
     adduserinfo(state,obj){
       state.userinfo=obj;

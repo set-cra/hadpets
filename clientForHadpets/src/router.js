@@ -54,6 +54,11 @@ export default new Router({
       ]
     },
     {
+      path:'/afterlogup',
+      name:'afterlogup',
+      component:()=>import('./views/afterlogup')
+    },
+    {
       path:'*',
       name:'404',
       redirect:'/'

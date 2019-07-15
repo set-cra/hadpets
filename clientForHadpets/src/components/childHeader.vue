@@ -1,6 +1,6 @@
 <template>
     <header class="child-header-container">
-        <span class="back" @touchend="back">&lt;</span>
+        <span v-if="needback" class="back" @touchend="back">&lt;</span>
         <span class="title">{{title}}</span>
     </header>
 </template>
@@ -16,6 +16,10 @@ export default {
         title:{
             type:String,
             default:''
+        },
+        needback:{
+            default:true,
+            type:Boolean
         }
     },
     methods:{

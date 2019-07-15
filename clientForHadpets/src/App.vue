@@ -9,3 +9,14 @@
 <style lang="scss">
 
 </style>
+
+<script>
+export default {
+  created(){
+    //向后台服务请求用户信息,检测是否登录
+    this.$axios.post('/user/islogin').then(res=>{
+      console.log(res);
+    }).catch(err=>console.log(err));
+  }
+}
+</script>

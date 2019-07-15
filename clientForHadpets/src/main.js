@@ -14,17 +14,14 @@ import tabBar from './components/tabBar'
 //注册全局事件
 Vue.component("tabBar",tabBar);
 
-//引入socket.io模块
-import VueSocketio from 'vue-socket.io';
-
-
 //引入axios模块
 import axios from 'axios';
 //放入原型链中,连接后台
 Vue.prototype.$axios=axios.create({
   withCredentials:true,
-  baseURL:'http://176.18.8.111:8153'
+  baseURL:'http://localhost:8153'
 })
+
 
 new Vue({
   router,
