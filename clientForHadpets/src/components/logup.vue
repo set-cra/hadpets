@@ -98,10 +98,12 @@ export default {
             ).then(res=>{
                 if(res.data.code==1){
                     target.innerText="注册";
-                    this.context="注册成功,1s后前往登录";
+                    this.context="注册成功";
+                    this.$store.commit("login",res.data.uid);
+                    console.log(res.data.uid)
                     let timer=setInterval(()=>{
                         this.context='';
-                        this.tologin();
+                        this.$router.push('/afterlogup');
                         clearInterval(timer);
                     },1000);
                 }

@@ -1,11 +1,7 @@
 <template>
     <section class="myinfo-detail-container">
         <div class="item">
-            <label class="label">
-                <input type="file" name="uimage" style="display:none"/>
-                <span>头像</span>
-                <img class="uimg" :src="uimageSRC" alt="头像">
-            </label>
+            <my-user-img></my-user-img>
             <div class="label">
                 <span>昵称</span>
                 <span>{{userinfo.nick?userinfo.nickname:'未设置'}}</span>
@@ -47,6 +43,9 @@ export default {
     },
     mounted(){
         this.$emit("title","个人资料");
+    },
+    components:{
+        "my-user-img":()=>import('./userImg')
     }
 }
 </script>

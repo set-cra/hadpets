@@ -20,9 +20,11 @@ router.post('/logup',(req,res)=>{
     pool.query('INSERT INTO userlog SET ?',[req.body],(err,result)=>{
         if(err) console.log(err);
         pool.query('SELECT uid FROM userlog WHERE uname=? AND upwd=?',[uname,upwd],(err,result)=>{
-            console.log(result.uid);
+            let uid=result[0].uid;
+            req.session.uid=uid;
+            req.session.cookie.maxAge=null;
+            res.send({code:1,message:"注册成功",uid});
         })
-        res.send({code:1,message:"注册成功"});
     })
 });
 router.post('/logcheck',(req,res)=>{

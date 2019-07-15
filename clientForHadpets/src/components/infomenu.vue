@@ -1,6 +1,7 @@
 <template>
     <section class="container" @touchend.prevent="pushTo">
         <my-popup v-if="popup" @result="close" :textcontent="'确定要退出吗'"></my-popup>
+        <my-warning v-if="logwarning.length>0" :content="logwarning"></my-warning>
         <div class="item">
             <span class="item-child" :data-path="'/setinfo/myinfo'">个人资料</span>
         </div>
@@ -11,10 +12,12 @@
 </template>
 
 <script>
+import {  setTimeout } from 'timers';
 export default {
     data() {
         return {
-            popup:false
+            popup:false,
+            logwarning:''
         }
     },
     methods:{
@@ -35,7 +38,11 @@ export default {
                     this.$store.commit("logout");
                     this.$router.push('/index');
                 }).catch(err=>{
-                    console.log(err);
+                    this.logwarning="登出失败,请稍等再试";
+                    let timer=setTimeout(()=>{
+                        this.logwarning="";
+                        clearTimeout(timer);
+                    },1000);
                 })
             }
                 this.popup=false;
@@ -45,7 +52,8 @@ export default {
         this.$emit("title","设置")
     },
     components:{
-        "my-popup":()=>import('../components/popup')
+        "my-popup":()=>import('../components/popup'),
+        "my-warning":()=>import('../components/warning'),
     },
 }
 </script>
