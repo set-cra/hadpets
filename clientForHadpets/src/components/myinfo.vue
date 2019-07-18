@@ -2,10 +2,7 @@
     <section class="myinfo-detail-container">
         <div class="item">
             <my-user-img></my-user-img>
-            <div class="label">
-                <span>昵称</span>
-                <span>{{userinfo.nick?userinfo.nickname:'未设置'}}</span>
-            </div>
+            <my-user-nickname></my-user-nickname>
             <div class="label">
                 <span>用户编号</span>
                 <span>{{uid}}</span>
@@ -45,7 +42,8 @@ export default {
         this.$emit("title","个人资料");
     },
     components:{
-        "my-user-img":()=>import('./userImg')
+        "my-user-img":()=>import('./userImg'),
+        "my-user-nickname":()=>import('./usernickname'),
     }
 }
 </script>

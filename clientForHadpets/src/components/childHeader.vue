@@ -2,6 +2,7 @@
     <header class="child-header-container">
         <span v-if="needback" class="back" @touchend="back">&lt;</span>
         <span class="title">{{title}}</span>
+        <span class="right" v-if="!!rightContent" @touchend="rightFunc">{{rightContent}}</span>
     </header>
 </template>
 
@@ -20,6 +21,14 @@ export default {
         needback:{
             default:true,
             type:Boolean
+        },
+        rightContent:{
+            default:undefined,
+            type:String
+        },
+        rightFunc:{
+            default:undefined,
+            type:Function
         }
     },
     methods:{
@@ -59,6 +68,11 @@ export default {
         }
         .title{
             font-size: 0.8rem;
+        }
+        .right{
+            font-size: 0.6rem;
+            position: absolute;
+            right: 0.6rem;
         }
     }
 </style>

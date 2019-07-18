@@ -19,8 +19,8 @@ import axios from 'axios';
 //放入原型链中,连接后台
 Vue.prototype.$axios=axios.create({
   withCredentials:true,
-  baseURL:'http://localhost:8153'
-})
+  baseURL:'/api'
+});
 
 
 new Vue({

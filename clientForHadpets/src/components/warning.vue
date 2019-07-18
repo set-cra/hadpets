@@ -31,5 +31,9 @@ export default {
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
+        top:50%;
+        left: 50%;
+        margin-top: -1.5rem;
+        margin-left: -40%;
     }
 </style>

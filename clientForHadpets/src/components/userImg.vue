@@ -44,6 +44,7 @@ export default {
     padding: 0.4rem;
     border-bottom:1px solid #ccc; 
     font-size: 0.8rem;
+    height:2rem;
     .div{
         width: 4rem;
         display: flex;

@@ -7,13 +7,6 @@ express.listen(8153);
 express.use(bp.urlencoded({
     extended:false
 }))
-//引入sors模块
-const cors = require('cors');
-//跨域资源共享
-express.use(cors({
-    credentials:true,
-    origin:["http://localhost:8080"]
-}))
 
 //调用session模块保存用户登录
 const session = require('express-session');

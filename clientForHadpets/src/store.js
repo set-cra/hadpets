@@ -26,7 +26,8 @@ export default new Vuex.Store({
     logout(state){
       state.userid=undefined;
     },
-    adduserinfo(state,str,value){
+    adduserinfo(state,{str,value}){
+      console.log(value);
       state.userinfo[str]=value;
     }
   },

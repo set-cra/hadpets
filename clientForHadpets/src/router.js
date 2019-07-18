@@ -59,6 +59,12 @@ export default new Router({
       component:()=>import('./views/afterlogup')
     },
     {
+      path:'/inputinfo/:infoType',
+      name:'inputinfo',
+      component:()=>import('./views/infoInput'),
+      props:true
+    },
+    {
       path:'*',
       name:'404',
       redirect:'/'

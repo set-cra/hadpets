@@ -7,7 +7,9 @@
 </template>
 
 <style lang="scss">
-
+ #app{
+   min-height: 100vh;
+ }
 </style>
 
 <script>
@@ -16,7 +18,7 @@ export default {
     //向后台服务请求用户信息,检测是否登录
     this.$axios.post('/user/islogin').then(res=>{
       this.$store.commit('login',res.data.uid);
-    }).catch(err=>console.log(err));
+    }).catch(err=>this.$store.commit('login',undefined));
   }
 }
 </script>
